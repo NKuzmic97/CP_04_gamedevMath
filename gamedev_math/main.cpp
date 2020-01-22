@@ -1,9 +1,16 @@
 #include <iostream>
 
+class Point;
+
 class Vector {
 public:
 	float Length() const;
-	float LengthSqr() const;
+	float LengthSq() const;
+
+	Vector operator*(float s) const;
+	Vector operator/(float s) const;
+	
+
 	float x, y;
 	//Vector3D float x,y,z;
 };
@@ -18,9 +25,18 @@ float Vector::Length() const {
 	return sqrt(x * x + y * y);
 }
 
-float Vector::LengthSqr() const {
+float Vector::LengthSq() const {
 	return (x * x + y * y);
 }
+
+Vector Vector::operator*(float s) const {
+	return { x*s,y*s };
+}
+
+Vector Vector::operator/(float s) const {
+	return { x / s,y / s };
+}
+
 
 Point Point::AddVector(Vector v) const {
 	return { x + v.x, y + v.y };
@@ -31,20 +47,11 @@ Vector operator-(Point a,Point b) {
 }
 
 int main() {
-	Point p{ 0,-1 };
-	Point i{ 1,1 };
-	Point c{ 2,-1 };
-
-	Vector ip{ p - i };
-	Vector cp{ p - c };
-
-	float lenSqrCP = cp.LengthSqr();
-	float lenSqrIP = ip.LengthSqr();
-
-	std::cout << "Length squared of CP: " << lenSqrCP << std::endl;
-	std::cout << "Length squared of IP: " << lenSqrIP << std::endl;
-
-	std::cout << "Closer is " << ((lenSqrCP < lenSqrIP) ? "Clyde.":"Inky.") << std::endl;
-	
+	Vector v{ 3,4 };
+	std::cout << "Pac-man initial speed: " << v.Length() << std::endl;
+	Vector vDouble = v * 2;
+	std::cout << "Pac-man double speed: " << vDouble.Length() << std::endl;
+	Vector vHalf = v / 2;
+	std::cout << "Pac-man half speed: " << vHalf.Length() << std::endl;
 	std::cin.get();
 }
