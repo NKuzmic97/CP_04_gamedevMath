@@ -9,7 +9,8 @@ public:
 
 	Vector operator*(float s) const;
 	Vector operator/(float s) const;
-	
+
+	Vector Normalized() const;
 
 	float x, y;
 	//Vector3D float x,y,z;
@@ -37,6 +38,10 @@ Vector Vector::operator/(float s) const {
 	return { x / s,y / s };
 }
 
+Vector Vector::Normalized() const {
+	return (*this) / Length();
+}
+
 
 Point Point::AddVector(Vector v) const {
 	return { x + v.x, y + v.y };
@@ -47,11 +52,15 @@ Vector operator-(Point a,Point b) {
 }
 
 int main() {
-	Vector v{ 3,4 };
-	std::cout << "Pac-man initial speed: " << v.Length() << std::endl;
-	Vector vDouble = v * 2;
-	std::cout << "Pac-man double speed: " << vDouble.Length() << std::endl;
-	Vector vHalf = v / 2;
-	std::cout << "Pac-man half speed: " << vHalf.Length() << std::endl;
+	Point i{ 3,4 };
+	Point p{ 1,2 };
+
+	Vector pi = i - p;
+	Vector normalized = pi.Normalized();
+
+	std::cout << "Pac-man's view vector: (" << normalized.x << ", " << normalized.y << ") " << std::endl;
+
+	std::cout << "Pac-man's view vector length: " << normalized.Length() << std::endl;
+	
 	std::cin.get();
 }
