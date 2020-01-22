@@ -16,11 +16,16 @@ Point Point::AddVector(Vector v) const {
 	return { x + v.x, y + v.y };
 }
 
+Vector operator-(Point a,Point b) {
+	return { a.x - b.x,a.y - b.y };
+}
 
 int main() {
-	Point p = { 2,4 };
-	Vector v = { -5,3 };
-	Point newP = p.AddVector(v);
-	std::cout << "New position: " << "x: " << newP.x << " , y: " << newP.y << std::endl;
+	Point p{ 0,-1 };
+	Point i{ 1,1 };
+
+	Vector v{ p - i };
+
+	std::cout << "Result: " << "< " << v.x << ", " << v.y << " >" << std::endl;
 	std::cin.get();
 }
