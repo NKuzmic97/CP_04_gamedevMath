@@ -9,6 +9,9 @@ public:
 
 	Vector operator*(float s) const;
 	Vector operator/(float s) const;
+	Vector operator-(const Vector& v) const;
+	Vector operator+(const Vector& v) const;
+
 
 	Vector Normalized() const;
 
@@ -38,6 +41,14 @@ Vector Vector::operator/(float s) const {
 	return { x / s,y / s };
 }
 
+Vector Vector::operator-(const Vector& v) const {
+	return { x - v.x,y - v.y };
+}
+
+Vector Vector::operator+(const Vector& v) const {
+	return { x + v.x,y + v.y };
+}
+
 Vector Vector::Normalized() const {
 	return (*this) / Length();
 }
@@ -52,15 +63,12 @@ Vector operator-(Point a,Point b) {
 }
 
 int main() {
-	Point i{ 3,4 };
-	Point p{ 1,2 };
+	Vector r{4,0};
+	Vector d{ 0,-5 };
 
-	Vector pi = i - p;
-	Vector normalized = pi.Normalized();
+	Vector v = r + d;
 
-	std::cout << "Pac-man's view vector: (" << normalized.x << ", " << normalized.y << ") " << std::endl;
-
-	std::cout << "Pac-man's view vector length: " << normalized.Length() << std::endl;
+	std::cout << "Pac-man's new velocity: (" << v.x << " ," << v.y << ")" << std::endl;
 	
 	std::cin.get();
 }
