@@ -62,6 +62,10 @@ Vector operator-(Point a,Point b) {
 	return { a.x - b.x,a.y - b.y };
 }
 
+float DotProduct(const Vector& a,const Vector& b) {
+	return a.x * b.x + a.y * b.y;
+}
+
 int main() {
 	Vector r{4,0};
 	Vector d{ 0,-5 };
