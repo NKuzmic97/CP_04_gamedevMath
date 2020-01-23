@@ -123,6 +123,8 @@ protected:
 	class CConsole*				m_pConsole;
 
 	static CApplication*		s_pApplication;
+	int							m_iLastMouseX;
+	int							m_iLastMouseY;
 };
 
 inline CApplication* Application()

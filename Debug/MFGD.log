@@ -1,18 +1,2 @@
-﻿  platform_win32.cpp
-  data.cpp
-  dataserializer.cpp
-  main.cpp
-  color.cpp
-c:\!repos\cp_04_gamedevmath\math\color.cpp(100): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\!repos\cp_04_gamedevmath\math\color.cpp(160): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  matrix.cpp
-  vector.cpp
-  application.cpp
-  image_read.cpp
-  renderer.cpp
-  renderingcontext.cpp
-  shaders.cpp
-  Generating Code...
-  gl3w.c
-libglfw.lib(win32_window.o) : error LNK2019: unresolved external symbol __imp___iob referenced in function _createWindow
-C:\!repos\CP_04_gamedevMath\Debug\MFGD.exe : fatal error LNK1120: 1 unresolved externals
+﻿  main.cpp
+  MFGD.vcxproj -> C:\!repos\CP_04_gamedevMath\Debug\MFGD.exe

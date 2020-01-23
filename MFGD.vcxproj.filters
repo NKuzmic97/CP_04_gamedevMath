@@ -78,4 +78,9 @@
       <Filter>Libraries</Filter>
     </Library>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="math\EulerAngle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

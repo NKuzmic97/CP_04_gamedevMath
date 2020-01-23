@@ -47,6 +47,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;.\common;.\include;.\math</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -88,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\libglfw.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="math\EulerAngle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
