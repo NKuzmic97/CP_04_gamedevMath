@@ -19,11 +19,14 @@ public:
 
 	Vector operator+(const Vector& v) const;
 	Vector operator-(const Vector& v) const;
-
 	Vector operator*(float s) const;
 	Vector operator/(float s) const;
 
 	Vector Normalized() const;
+	void Normalize();
+	// Why was Dot product missing ?
+	float Dot(const Vector& v) const;
+	Vector Cross(const Vector& v) const;
 
 public:
 	float x, y, z;

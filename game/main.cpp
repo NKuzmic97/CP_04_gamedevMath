@@ -32,9 +32,10 @@ class CCharacter
 {
 public:
 	Point vecPosition;
+	Vector vecMovementGoal;
 	Vector vecVelocity;
-	Vector vecVelocityGoal;
 	Vector vecGravity;
+	Vector vecMovement;
 	EulerAngle angView;
 };
 
@@ -46,27 +47,27 @@ bool CGame::KeyPress(int c)
 {
 	if (c == 'W')
 	{
-		box.vecVelocityGoal.z = 15;
+		box.vecMovementGoal.z = 15;
 		return true;
 	}
 	else if (c == 'A')
 	{
-		box.vecVelocityGoal.x = 15;
+		box.vecMovementGoal.x = 15;
 		return true;
 	}
 	else if (c == 'S')
 	{
-		box.vecVelocityGoal.z = -15;
+		box.vecMovementGoal.z = -15;
 		return true;
 	}
 	else if (c == 'D')
 	{
-		box.vecVelocityGoal.x = -15;
+		box.vecMovementGoal.x = -15;
 		return true;
 	}
 	else if (c == ' ')
 	{
-		box.vecVelocity.y = 2;
+		box.vecMovementGoal.y = 2;
 		return true;
 	}
 	else
@@ -78,19 +79,19 @@ void CGame::KeyRelease(int c)
 {
 	if (c == 'W')
 	{
-		box.vecVelocityGoal.z = 0;
+		box.vecMovementGoal.z = 0;
 	}
 	else if (c == 'A')
 	{
-		box.vecVelocityGoal.x = 0;
+		box.vecMovementGoal.x = 0;
 	}
 	else if (c == 'S')
 	{
-		box.vecVelocityGoal.z = 0;
+		box.vecMovementGoal.z = 0;
 	}
 	else if (c == 'D')
 	{
-		box.vecVelocityGoal.x = 0;
+		box.vecMovementGoal.x = 0;
 	}
 	else
 		CApplication::KeyPress(c);
@@ -115,10 +116,19 @@ void CGame::MouseMotion(int x, int y) {
 // In this Update() function we need to update all of our characters. Move them around or whatever we want to do.
 void Update(float dt)
 {
-	box.vecVelocity.x = Approach(box.vecVelocityGoal.x, box.vecVelocity.x, dt);
-	box.vecVelocity.z = Approach(box.vecVelocityGoal.z, box.vecVelocity.z, dt);
+	box.vecMovement.x = Approach(box.vecMovementGoal.x, box.vecMovement.x, dt);
+	box.vecMovement.z = Approach(box.vecMovementGoal.z, box.vecMovement.z, dt);
 
-	// Update position and vecVelocity.
+	Vector vecForward = box.angView.ToVector();
+	vecForward.y = 0;
+	vecForward.Normalize();
+
+	const Vector vecUp(0, 1, 0);
+	const Vector vecRight = vecUp.Cross(vecForward);
+
+	box.vecVelocity = vecForward * box.vecMovement.x + vecRight * box.vecMovement.z;
+	
+	// Update position and vecMovement.
 	box.vecPosition = box.vecPosition + box.vecVelocity * dt;
 	box.vecVelocity = box.vecVelocity + box.vecGravity * dt;
 

@@ -36,3 +36,4 @@
 *.idb
 *.pdb
 *.ilk
+*.ipch

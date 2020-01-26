@@ -27,6 +27,22 @@ Vector Vector::Normalized() const
 	return (*this) / Length();
 }
 
+void Vector::Normalize() {
+	*this = (*this).Normalized();
+}
+
+float Vector::Dot(const Vector & v) const {
+	return x * v.x + y * v.y + z * v.z;
+}
+
+Vector Vector::Cross(const Vector & v) const {
+	return {
+		y * v.z - z * v.y,
+		z * v.x - x * v.z,
+		x * v.y - y * v.x
+	};
+}
+
 Vector Vector::operator*(float s) const
 {
 	return Vector(x * s, y * s, z * s);
